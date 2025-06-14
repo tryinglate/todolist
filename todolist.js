@@ -5,51 +5,53 @@ const list = document.getElementById("task-list");
 
 // Function to add a new task to the list
 const addTask = () => {
-    const taskText = input.value.trim(); // Get the text from the box and remove leading/trailing whitespace
-
-    // If the input is empty, do nothing
+    const taskText = input.value.trim();
     if (taskText === "") {
         console.log("Task input is empty. Not adding a new task.");
         return;
     }
 
-    // Create a unique ID for the checkbox and label
-    // Using Date.now() and a random number ensures a high probability of uniqueness
     const uniqueId = `task-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
-    // Create a list item (li) for the new task
     const li = document.createElement("li");
 
-    // Create the checkbox input element
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
-    checkbox.id = uniqueId; // Assign the unique ID to the checkbox
+    checkbox.id = uniqueId;
 
-    // Create the label element for the task text
-    // The 'for' attribute links the label to its corresponding checkbox by ID
     const label = document.createElement("label");
-    label.htmlFor = uniqueId; // Link the label to the checkbox
-    label.textContent = taskText; // Set the text content of the label
+    label.htmlFor = uniqueId;
+    label.textContent = taskText;
 
-    // Append the checkbox and the label to the list item
+    // ✅ CREATE DELETE BUTTON
+    const deleteBtn = document.createElement("button");
+    deleteBtn.innerHTML = `
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M3 6h18M8 6v12M16 6V6M5 6v12h14V6H5z"/>
+</svg>
+`;
+    deleteBtn.className = "delete-btn";
+
+    // 🧠 Event to remove the task item
+    deleteBtn.addEventListener("click", () => {
+        li.remove();
+        console.log(`Deleted task: "${taskText}"`);
+    });
+
     li.appendChild(checkbox);
     li.appendChild(label);
+    li.appendChild(deleteBtn); // ✅ ADD delete button to the li
 
-    // Add an event listener to the checkbox to handle state changes
-    // This listener is crucial for the CSS line-through effect to work
     checkbox.addEventListener("change", () => {
-        // The CSS rule 'input[type="checkbox"]:checked + label' handles the styling
-        // So, no direct JS manipulation of text decoration is needed here for that specific effect.
         console.log(`Task "${taskText}" is now ${checkbox.checked ? 'checked' : 'unchecked'}.`);
     });
 
-    // Append the new list item to the task list (ul)
     list.appendChild(li);
-
-    // Clear the input box after adding the task
     input.value = "";
     console.log(`Added new task: "${taskText}"`);
 };
+
 
 // When the "Add" button is clicked, add the task
 button.addEventListener("click", addTask);
