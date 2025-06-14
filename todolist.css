@@ -7,7 +7,7 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 20px;
-    box-sizing: border-box; /* Include padding in element's total width and height */
+    box-sizing: border-box;
 }
 
 h1 {
@@ -15,15 +15,18 @@ h1 {
     margin-bottom: 30px;
 }
 
-/* Style for the input field */
+/* Input field */
 .placeholder {
+    flex-grow: 1;     
     width: 300px;
+    height: 48px;
     padding: 12px 15px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 16px;
     margin-right: 10px;
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    font-family: 'Poppins', sans-serif;
 }
 
 .placeholder:focus {
@@ -32,17 +35,19 @@ h1 {
     box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
 }
 
-/* Style for the Add button */
 .button {
+    display: flex; 
+    justify-content: center;   
+    align-items: center;      
     background-color: #007bff;
     color: white;
-    padding: 12px 20px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.2s ease, transform 0.1s ease;
-    margin-top: 10px;
+    width: 48px;      
+    height: 48px;
 }
 
 .button:hover {
@@ -55,86 +60,112 @@ h1 {
     transform: translateY(0);
 }
 
-/* --- Task List Specific Styles --- */
-
-/* Style for the overall task list container (your ul with class="checkbox") */
-.checkbox {
-    background-color: rgb(255, 255, 255);
-    margin-top: 30px; /* Increased margin to separate from input/button */
-    border-radius: 10px; /* Smoother edges for the main box */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Slightly stronger shadow */
-    list-style: none; /* Removes default bullet points from the ul */
-    width: 350px; /* Give the list a fixed width */
-    max-width: 90%; /* Ensure it's responsive on smaller screens */
-    padding-left: 0; /* Remove default ul padding */
+.input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;       
+    width: 400px;      
 }
 
-/* Style for individual list items (each task) */
+.checkbox {
+    margin-top: 30px;
+    list-style: none;
+    width: 350px;
+    max-width: 90%;
+    padding-left: 0;
+}
+
+/* Each task item (LI) gets its own box */
 .checkbox li {
-    display: flex; /* Helps align checkbox and label */
-    align-items: center; /* Vertically center them */
-    padding: 10px 12px; /* Padding inside each task item */
-    margin-bottom: 10px; /* Space between task items */
-    border: 1px solid #e0e0e0; /* Light grey border for each item */
-    border-radius: 7px; /* Smooth edges for individual items */
-    background-color: #ffffff; /* White background for each item */
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer; /* Indicate item itself is clickable (for better UX) */
+    cursor: pointer;
+}
+
+.checkbox li:hover {
+    background-color: #f8f8f8;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
 .checkbox li:last-child {
-    margin-bottom: 0; /* No bottom margin for the last item */
+    margin-bottom: 0;
 }
 
-/* Optional: Hover effect for individual list items */
-.checkbox li:hover {
-    background-color: #f8f8f8;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-/* Style for the actual checkbox input */
+/* Custom checkbox style */
 .checkbox input[type="checkbox"] {
-    appearance: none; /* Hide default checkbox */
+    appearance: none;
     -webkit-appearance: none;
     width: 20px;
     height: 20px;
     border: 2px solid #bbb;
-    border-radius: 4px; /* Slightly rounded checkbox */
-    margin-right: 12px; /* Space between checkbox and label */
+    border-radius: 4px;
+    margin-right: 12px;
     cursor: pointer;
-    position: relative; /* Needed for custom checkmark */
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-shrink: 0; /* Prevent checkbox from shrinking */
+    flex-shrink: 0;
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-/* Custom checkmark when checkbox is checked */
 .checkbox input[type="checkbox"]:checked {
-    background-color: #28a745; /* Green background when checked */
+    background-color: #28a745;
     border-color: #28a745;
 }
 
 .checkbox input[type="checkbox"]:checked::after {
-    content: '✔'; /* Checkmark symbol */
+    content: '✔';
     color: white;
     font-size: 14px;
     font-weight: bold;
 }
 
-/* Style for the label (the task text) */
+/* Task label */
 .checkbox label {
-    flex-grow: 1; /* Allows label to take up remaining space */
-    cursor: pointer; /* Indicates it's clickable */
+    flex-grow: 1;
+    cursor: pointer;
     font-size: 17px;
-    color: #333; /* Darker text color */
-    word-break: break-word; /* Prevent long words from overflowing */
+    color: #333;
+    word-break: break-word;
 }
 
-/* When the checkbox is checked, apply line-through to the corresponding label */
+/* Line-through when checked */
 .checkbox input[type="checkbox"]:checked + label {
     text-decoration: line-through;
-    color: #888; /* Dim the color slightly */
-    transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth transition */
+    color: #888;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+.delete-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 18px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.delete-btn:hover {
+    color: #dc3545;
+}
+.svg-icon {
+    width: 18px;
+    height: 18px;
+}
+.title-header {
+    display: flex;
+    align-items: center;
+    font-size: 28px;
+    gap: 10px;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 20px;
 }
