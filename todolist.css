@@ -197,3 +197,11 @@ body.dark .delete-btn {
 body.dark .delete-btn:hover {
     color: #f87171;
 }
+
+body.dark .checkbox label {
+    color: #f1f1f1;
+}
+
+body.dark .checkbox input[type="checkbox"]:checked + label {
+    color: #aaaaaa;
+}
