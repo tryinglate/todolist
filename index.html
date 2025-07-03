@@ -1,53 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="todolist.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
-      rel="stylesheet"
-    />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Todo List</title>
-  </head>
-  <body class="light">
-    <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
-      <h1 class="title-header">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-          stroke-width="1.5" stroke="currentColor" width="24" height="24"
-          style="margin-right: 8px;">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375
-             0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75
-             12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1
-             .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1
-             1-.75 0 .375.375 0 0 1 .75 0Z"/>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light">
+  <button class="sidebar-toggle" id="sidebarToggle">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+  
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h3>My Links</h3>
+      <button class="close-sidebar" id="closeSidebar">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
         </svg>
-        My Todo List
-      </h1>
-      <button id="darkmode-toggle" class="button" style="margin-right: 10px;" aria-label="Toggle Dark Mode">
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-      d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
-  </svg>
-</button>
+      </button>
     </div>
+    <div class="sidebar-links">
+      <a href="https://github.com/tryinglate" target="_blank">GitHub</a>
+      <a href="https://tryinglate.github.io/pomodoro-timer/" target="_blank">Pomodoro Timer</a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <h1 class="title-header">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="todo-icon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+      </svg>
+      My Todo List
+    </h1>
 
     <div class="input-container">
-      <input type="text" class="placeholder" id="new-task" placeholder="Add a task..." />
+      <input type="text" class="placeholder" id="new-task" placeholder="Add a task...">
       <button class="button" id="add-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-          viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-          class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M12 4.5v15m7.5-7.5h-15" />
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="add-icon">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
       </button>
     </div>
 
     <ul class="checkbox" id="task-list"></ul>
+  </div>
 
-    <script src="todolist.js" defer></script>
-  </body>
+  <button class="darkmode-toggle button" id="darkmodeToggle">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 009.79 9.79a7 7 0 0011.21 3z" />
+    </svg>
+  </button>
+
+  <script src="app.js"></script>
+</body>
 </html>
